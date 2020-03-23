@@ -2,8 +2,14 @@
 
 Для запуска надо:
   * Склонировать репозиторий.
-  * В папке с кодом выполнить docker-compose up -d (Это запустит монго и редис) и pip install -r requirements.txt
-  * Далее выполнить ./manage.py migrate, ./manage.py createsuperuser, ./manage.py runserver
+  * Выполнить следующие команды:
+    - pip install -r requirements.txt
+    - sudo docker run --name redis-instance --rm -d -p 6379:6379 redis:5.0.7 redis-server --appendonly yes
+    - sudo docker run --name mongo-instance --rm -d -p "27017:27017" mongo:4.2.3
+    - ./manage.py migrate 
+    - ./manage.py createsuperuser 
+    - ./manage.py runserver
  
  Доп.информация:
    * Для кэширования используется cacheops https://github.com/Suor/django-cacheops
+ 
